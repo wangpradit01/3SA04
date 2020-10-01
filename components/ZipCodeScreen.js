@@ -1,6 +1,6 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { View, Text, FlatList, TouchableHighlight,StyleSheet } from 'react-native';
+import { View, Text, FlatList, TouchableHighlight, StyleSheet, ImageBackground } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const availableZipItems = [
@@ -9,14 +9,18 @@ const availableZipItems = [
     { place: 'Chiangmai', code: '50000' },
     { place: 'Khonkaen', code: '40000' },
     { place: 'Chonburi', code: '20000' },
+    { place: 'Suratthani', code: '84000' },
+    { place: 'Kohpangan', code: '84280' },
+    { place: 'Phuket', code: '83210' },
 ]
 const ZipItem = ({ place, code, navigation }) => (
-    <TouchableHighlight onPress={() => navigation.navigate('Weather', { zipCode: code } )}underlayColor="#cecece">
+    <TouchableHighlight onPress={() => navigation.navigate('Weather', { zipCode: code })} underlayColor="#789CCE">
         <View style={styles.item}>
             <Text>{place}</Text>
             <Text>{code}</Text>
         </View>
     </TouchableHighlight>
+
 )
 
 
@@ -26,21 +30,30 @@ export default function ZipCodeScreen() {
     const navigation = useNavigation()
     return (
         <View>
-            <FlatList
-                data={availableZipItems}
-                keyExtractor={_keyExtractor}
-                renderItem={({ item }) => <ZipItem {...item} navigation={navigation} />}
-            />
-            <StatusBar style="auto" />
+            <ImageBackground source={require('../sk.jpg')} style={styles.item}>
+                <FlatList
+                    data={availableZipItems}
+                    keyExtractor={_keyExtractor}
+                    renderItem={({ item }) => <ZipItem {...item} navigation={navigation} />}
+                />
+                <StatusBar style="auto" />
+            </ImageBackground>
         </View>
+
     );
 
 }
 
 const styles = StyleSheet.create({
-    item:{
+    item: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        padding: 20,
-    }
+        padding: 30,
+       
+    },
+    backdrop: {
+        alignItems: 'center',
+        width: '100%',
+        height: '100%',
+    },
 })
