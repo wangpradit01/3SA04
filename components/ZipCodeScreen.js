@@ -10,8 +10,7 @@ const availableZipItems = [
     { place: 'Khonkaen', code: '40000' },
     { place: 'Chonburi', code: '20000' },
     { place: 'Suratthani', code: '84000' },
-    { place: 'Kohpangan', code: '84280' },
-    { place: 'Phuket', code: '83210' },
+    { place: 'Phuket', code: '83120'}, 
 ]
 const ZipItem = ({ place, code, navigation }) => (
     <TouchableHighlight onPress={() => navigation.navigate('Weather', { zipCode: code })} underlayColor="#789CCE">
@@ -48,7 +47,7 @@ const styles = StyleSheet.create({
     item: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        padding: 30,
+        padding: 35,
        
     },
     backdrop: {
